@@ -1,8 +1,8 @@
 [gd_scene load_steps=35 format=3 uid="uid://cev367gwm3ncm"]
 
 [ext_resource type="Texture2D" uid="uid://c6dcc1iy47a5p" path="res://Assets/Sprites/Dwarf Sprite Sheet 1.3v.png" id="1_3e2tf"]
-[ext_resource type="Script" uid="uid://wy873wrd8r0j" path="res://Scripts/Player_controller.cs" id="1_b2ifw"]
-[ext_resource type="PackedScene" uid="uid://bpmgbxaerjync" path="res://Assets/Scenes/little_helper.tscn" id="3_aee6e"]
+[ext_resource type="Script" uid="uid://wy873wrd8r0j" path="res://Scripts/Player/Player_controller.cs" id="1_b2ifw"]
+[ext_resource type="PackedScene" uid="uid://ba01gkewtbu2n" path="res://Assets/Scenes/Helpers/Melee_helper.tscn" id="2_aee6e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_adwmj"]
 atlas = ExtResource("1_3e2tf")
@@ -239,9 +239,14 @@ animations = [{
 size = Vector2(11, 17.5)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_b2ifw")
+weapon_types = Dictionary[String, PackedScene]({
+"Melee": ExtResource("2_aee6e"),
+"Ranged": ExtResource("2_aee6e")
+})
 
 [node name="Animation_player" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -251,50 +256,35 @@ animation = &"Death"
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.75, 1.75)
 
-[node name="Helper_position" type="Node2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, 2)
-
-[node name="Helper1" type="Node2D" parent="Helper_position"]
-position = Vector2(21, 0)
-
-[node name="Little_helper" parent="Helper_position/Helper1" instance=ExtResource("3_aee6e")]
-
-[node name="Helper2" type="Node2D" parent="Helper_position"]
-position = Vector2(0, -19)
-
-[node name="Little_helper" parent="Helper_position/Helper2" instance=ExtResource("3_aee6e")]
-
-[node name="Helper3" type="Node2D" parent="Helper_position"]
-position = Vector2(-21, 0)
-
-[node name="Little_helper" parent="Helper_position/Helper3" instance=ExtResource("3_aee6e")]
-
-[node name="Helper4" type="Node2D" parent="Helper_position"]
-position = Vector2(0, 19)
-
-[node name="Little_helper" parent="Helper_position/Helper4" instance=ExtResource("3_aee6e")]
-
-[node name="Helper5" type="Node2D" parent="Helper_position"]
-position = Vector2(14, 13)
-
-[node name="Little_helper" parent="Helper_position/Helper5" instance=ExtResource("3_aee6e")]
-
-[node name="Helper6" type="Node2D" parent="Helper_position"]
-position = Vector2(13, -13)
-
-[node name="Little_helper" parent="Helper_position/Helper6" instance=ExtResource("3_aee6e")]
-
-[node name="Helper7" type="Node2D" parent="Helper_position"]
-position = Vector2(-15, 13)
-
-[node name="Little_helper" parent="Helper_position/Helper7" instance=ExtResource("3_aee6e")]
-
-[node name="Helper8" type="Node2D" parent="Helper_position"]
-position = Vector2(-15, -12)
-
-[node name="Little_helper" parent="Helper_position/Helper8" instance=ExtResource("3_aee6e")]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_aee6e")
+
+[node name="Little_helper_positions" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Pos1" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(14, 15)
+
+[node name="Pos2" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(-12, -11)
+
+[node name="Pos3" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(12, -11)
+
+[node name="Pos4" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(-14, 15)
+
+[node name="pos5" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(0, 21)
+
+[node name="Pos6" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(0, -17)
+
+[node name="pos7" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(19, 1)
+
+[node name="Pos8" type="Node2D" parent="Little_helper_positions"]
+position = Vector2(-19, 1)
+
+[node name="player_stats" type="Node2D" parent="."]
