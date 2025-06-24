@@ -11,7 +11,6 @@ public partial class Melee_helper : LittleHelper
     {
         helper_data = data;
         ID = (int)data["ID"];
-
     }
 
     public override void _Process(double delta)
@@ -21,7 +20,7 @@ public partial class Melee_helper : LittleHelper
     }
     private void swing()
     {
-        Console.WriteLine("Attack");
+        
     }
 
 

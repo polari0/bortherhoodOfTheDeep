@@ -1,12 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://sblw35q2iu8f"]
+[gd_scene load_steps=7 format=3 uid="uid://sblw35q2iu8f"]
 
 [ext_resource type="Texture2D" uid="uid://m16b5s658cdu" path="res://Assets/Sprites/Weapons/axe.png" id="1_jprx6"]
 [ext_resource type="Script" uid="uid://dlcpewxefxmhs" path="res://Scripts/Player/Weapon.cs" id="1_sxxfi"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sxxfi"]
-radius = 29.7321
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sxxfi"]
+radius = 7.07107
+
+[sub_resource type="Animation" id="Animation_g86ep"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.26544]
+}
+
+[sub_resource type="Animation" id="Animation_sxxfi"]
+resource_name = "weapon_swing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.333333, 0.466667, 0.6, 0.733333, 0.866667, 1),
+"transitions": PackedFloat32Array(1, 1.07177, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.523599, 1.74533, 2.0944, 2.79253, 2.0944, 1.39626, 0.698132, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmykb"]
+_data = {
+&"RESET": SubResource("Animation_g86ep"),
+&"weapon_swing": SubResource("Animation_sxxfi")
+}
 
 [node name="Melee_Weapon" type="Node2D"]
+rotation = 2.26544
 script = ExtResource("1_sxxfi")
 
 [node name="weapon_sprite" type="Sprite2D" parent="."]
@@ -20,5 +58,16 @@ unique_name_in_owner = true
 rotation = 0.785398
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_sprite/weapon_hitbox"]
-position = Vector2(-1.41422, 15.5563)
-shape = SubResource("CircleShape2D_sxxfi")
+position = Vector2(-3.16722e-07, 2.79325e-07)
+shape = SubResource("CapsuleShape2D_sxxfi")
+
+[node name="Attack_Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gmykb")
+}
+autoplay = "weapon_swing"
+
+[connection signal="timeout" from="Attack_Timer" to="." method="_on_attack_timer_timeout"]
