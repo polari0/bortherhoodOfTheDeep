@@ -6,6 +6,10 @@ using System.ComponentModel;
 using System.Net;
 using System.Numerics;
 
+/// <summary>
+/// Handles the basic controlls of player character as well as basic animation handling
+/// Setups the overidable functions for different character types to use.
+/// </summary>
 public partial class Player_controller : CharacterBody2D
 {
 
@@ -21,10 +25,9 @@ public partial class Player_controller : CharacterBody2D
 
     public Godot.Vector2 velocity;
 
-    public Array<LittleHelper> active_helpers = [];
-
     private int little_helper_count = 0;
     internal AnimatedSprite2D player_animation;
+
 
     private Array<Node> helper_positions;
 
@@ -37,9 +40,7 @@ public partial class Player_controller : CharacterBody2D
     {
         player_animation = GetNode<AnimatedSprite2D>("%Animation_player");
         player_animation.Play("Idle");
-        //test_lilhepler_buying();
-        //player_stats = (Godot.Collections.Dictionary<String, Variant>)DataBase.query_with_bindings(query, [1])[0];
-        //base._Ready();
+        Setup_player();
     }
 
 
@@ -68,7 +69,7 @@ public partial class Player_controller : CharacterBody2D
             if (Input.IsActionPressed("Move") && player_animation.Animation != "Walking")
                 player_animation.Play("Walking");
             if (Input.IsActionJustReleased("Move") && player_animation.Animation == "Walking")
-                player_animation.Play("Idle");            
+                player_animation.Play("Idle");
         }
     }
 
@@ -81,54 +82,8 @@ public partial class Player_controller : CharacterBody2D
             player_animation.Play("Idle");
     }
 
-    internal virtual void Attack()
-    {
-        
-    }
+    internal virtual void Attack() { }
 
-    // public void buy_little_helper(Godot.Collections.Dictionary<String, Variant> helper_data)
-    // {
-    //     if (little_helper_count == 8)
-    //     {
-    //         foreach (LittleHelper helper in active_helpers)
-    //         {
-    //             if (helper.helper_data["ID"].Equals(helper_data["ID"]) && helper.helper_data["Weapon_Tier"].Equals(helper_data["Weapon_Tier"]))
-    //             {
-    //                 helper.upgrade((int)(helper_data["Weapon_Tier"]), (float)(player_stats["Masterwork_level"]));
-    //             }
-    //         }
-    //     }
-    //     else
-    //         place_little_helper(helper_data);
-    // }
-
-
-    // private void place_little_helper(Godot.Collections.Dictionary<String, Variant> helper_data)
-    // {
-    //     helper_positions = little_helper_positions.GetChildren();
-    //     PackedScene helper_type;
-    //     helper_type = weapon_types[(string)helper_data["Weapon_type"]];
-    //     if (little_helper_count < helper_positions.Count)
-    //     {
-    //         LittleHelper lilhelper = helper_type.Instantiate<LittleHelper>();
-    //         Node2D next_pos;
-    //         next_pos = (Node2D)helper_positions[little_helper_count];
-    //         lilhelper.setup(helper_data);
-    //         next_pos.AddChild(lilhelper);
-    //         active_helpers.Add(lilhelper);
-    //         little_helper_count += 1;
-    //     }
-    // }
-
-    // private void test_lilhepler_buying()
-    // {
-    //     Godot.Collections.Array weapons = DataBase.query("SELECT a.* FROM Weapons a ");
-
-    //     for (int i = 0; i < 8; i++)
-    //     {
-    //         int random = GD.RandRange(0, weapons.Count - 1);
-    //         buy_little_helper((Godot.Collections.Dictionary<String, Variant>)weapons[random]);
-    //     }
-    // }
+    internal virtual void Setup_player() { }
 
 }
