@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://le32ixilnwdn"]
+
+[ext_resource type="Texture2D" uid="uid://4yccx71vat0c" path="res://Assets/Sprites/Weapons/blade.png" id="1_532xy"]
+[ext_resource type="Script" uid="uid://cwj0q6evmbyu3" path="res://Scripts/Enemies/BaseEnemy.cs" id="1_dwm2i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dwm2i"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_dwm2i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dwm2i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_532xy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

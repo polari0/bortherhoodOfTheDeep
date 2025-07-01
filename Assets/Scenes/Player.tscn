@@ -303,7 +303,7 @@ position = Vector2(0, 4)
 
 [node name="Attack_Area" type="Area2D" parent="Node2D"]
 unique_name_in_owner = true
-collision_layer = 4
+collision_layer = 12
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Attack_Area"]

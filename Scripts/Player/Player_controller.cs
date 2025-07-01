@@ -17,24 +17,17 @@ public partial class Player_controller : CharacterBody2D
     public float player_speed = 200;
 
     [Export]
-    public PackedScene little_helper_scene = GD.Load<PackedScene>("res://Assets/Scenes/little_helper.tscn");
-
-    [Export]
-    public Godot.Collections.Dictionary<String, PackedScene> weapon_types;
-    private Godot.Collections.Dictionary<String, Variant> player_stats;
+    public Godot.Collections.Dictionary<String, Godot.Variant> player_stats;
 
     public Godot.Vector2 velocity;
-
     private int little_helper_count = 0;
     internal AnimatedSprite2D player_animation;
-
-
     private Array<Node> helper_positions;
-
     public Godot.Vector2 move_direction;
-
     [Signal]
     public delegate void AnimationChangedEventHandler(string newAnimation, bool direction);
+    [Signal]
+    public delegate void DamageTakenEventHandler();
 
     public override void _Ready()
     {
@@ -85,5 +78,7 @@ public partial class Player_controller : CharacterBody2D
     internal virtual void Attack() { }
 
     internal virtual void Setup_player() { }
+
+    public virtual void Take_damage() {}
 
 }

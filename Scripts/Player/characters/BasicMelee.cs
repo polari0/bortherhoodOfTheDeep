@@ -21,6 +21,12 @@ public partial class BasicMelee : Player_controller
 
     public void _on_attack_area_area_entered(Area2D area)
     {
-        
+
+    }
+
+    public override void Take_damage()
+    {
+        player_stats["Health"] = (float)(player_stats["Health"]) - 10f;
+        GD.Print("Damage taken");
     }
 }
