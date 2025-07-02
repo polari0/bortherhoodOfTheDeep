@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class BasicMelee : Player_controller
 {
@@ -17,11 +18,31 @@ public partial class BasicMelee : Player_controller
     {
         attack_Animation = GetNode<AnimationPlayer>("%Attack_Animation");
         attack_area = GetNode<Area2D>("%Attack_Area");
+        temp();
+    }
+
+    private void temp()
+    {
+        bool test;
+        bool test2;
+        test = player_stats.TryAdd("Health", 100f);
+        test2 = player_stats.TryAdd("Damage", 4f);
+        if (test == false || test2 == false)
+        {
+            GD.Print(test);
+            GD.Print(test2);
+        }
     }
 
     public void _on_attack_area_area_entered(Area2D area)
     {
-
+        GD.Print("Got here");
+        if (area is BaseEnemy)
+        {
+            GD.Print("Enemy detected");
+            BaseEnemy target = (BaseEnemy)area;
+            target.Take_damage((float)player_stats["Damage"]);
+        }
     }
 
     public override void Take_damage()

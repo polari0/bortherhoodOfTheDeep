@@ -6,6 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwm2i"]
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 4
+collision_mask = 10
 script = ExtResource("1_dwm2i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
