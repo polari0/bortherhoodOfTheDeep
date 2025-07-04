@@ -9,7 +9,7 @@ public partial class BaseEnemy : Area2D
     internal Player_controller player_node;
     double enemy_speed = 50;
     float enemy_health = 10f;
-
+    float enemy_damage = 5f;
     public override void _Ready()
     {
         player_node = (Player_controller)GetNode<Node2D>("%Player_spawn").GetChild(0);
@@ -25,7 +25,7 @@ public partial class BaseEnemy : Area2D
         if (body is Player_controller)
         {
             Player_controller target = (Player_controller)body;
-            target.Take_damage();
+            target.Take_damage(enemy_damage);
         }
     }
 

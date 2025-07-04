@@ -18,7 +18,7 @@ public partial class BasicMelee : Player_controller
     {
         attack_Animation = GetNode<AnimationPlayer>("%Attack_Animation");
         attack_area = GetNode<Area2D>("%Attack_Area");
-        temp();
+        GetCharacterStats(Global.ChosenCharacterID);
     }
 
     private void temp()
@@ -45,9 +45,20 @@ public partial class BasicMelee : Player_controller
         }
     }
 
-    public override void Take_damage()
+    public override void Take_damage(float damage)
     {
-        player_stats["Health"] = (float)(player_stats["Health"]) - 10f;
-        GD.Print("Damage taken");
+        if (canTakeDamage)
+        {
+            player_stats["Health"] = (float)(player_stats["Health"]) - damage;
+            GD.Print("Damage taken");
+            if ((float)player_stats["Health"] < 0f)
+                die();
+        }
+    }
+
+    internal override void GetCharacterStats(int characterID)
+    {
+        base.GetCharacterStats(characterID);
+        GD.Print("Also do this");
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Net;
 using System.Numerics;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Handles the basic controlls of player character as well as basic animation handling
@@ -28,6 +29,8 @@ public partial class Player_controller : CharacterBody2D
     public delegate void AnimationChangedEventHandler(string newAnimation, bool direction);
     [Signal]
     public delegate void DamageTakenEventHandler();
+
+    internal bool canTakeDamage = true;
 
     public override void _Ready()
     {
@@ -75,10 +78,28 @@ public partial class Player_controller : CharacterBody2D
             player_animation.Play("Idle");
     }
 
-    internal virtual void Attack() { }
+    internal virtual async Task Iframes()
+    {
+        canTakeDamage = false;
+        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
+        canTakeDamage = true;
+    }
+
+    internal virtual void Attack(){ }
+
+    internal virtual void die()
+    {
+        GD.Print("Im dead");
+    }
 
     internal virtual void Setup_player() { }
 
-    public virtual void Take_damage() {}
+    internal virtual void GetCharacterStats(int characterID)
+    { 
+        string query = "SELECT a.* FROM Characters a WHERE a.ID = ?";
+        player_stats = (Godot.Collections.Dictionary<String, Variant>)DataBase.query_with_bindings(query, [characterID])[0];
+    }
+
+    public virtual void Take_damage(float damage) { }
 
 }

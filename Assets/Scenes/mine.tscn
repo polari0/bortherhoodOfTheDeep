@@ -440,9 +440,6 @@ unique_name_in_owner = true
 position = Vector2(1000, 800)
 
 [node name="Node2D" parent="Player_spawn" instance=ExtResource("3_71lpf")]
-player_stats = Dictionary[String, Variant]({
-"Health": 100.0
-})
 
 [node name="Area2D" parent="." instance=ExtResource("4_psnrx")]
 position = Vector2(388, 982)
