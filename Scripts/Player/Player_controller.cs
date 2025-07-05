@@ -43,7 +43,7 @@ public partial class Player_controller : CharacterBody2D
     public override void _PhysicsProcess(double delta)
     {
         velocity = Input.GetVector("Move_Left", "Move_Right", "Move_Up", "Move_Down");
-        move_direction = (velocity * player_speed * (float)delta);
+        move_direction = (velocity * (float)player_stats["Speed"] * (float)delta);
         if (Input.IsActionPressed("Move"))
             MoveAndCollide(move_direction);
         if (Input.IsActionJustPressed("Attack"))
@@ -92,7 +92,10 @@ public partial class Player_controller : CharacterBody2D
         GD.Print("Im dead");
     }
 
-    internal virtual void Setup_player() { }
+    internal virtual void Setup_player()
+    { 
+        GetCharacterStats(Global.ChosenCharacterID);
+    }
 
     internal virtual void GetCharacterStats(int characterID)
     { 

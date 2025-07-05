@@ -16,23 +16,12 @@ public partial class BasicMelee : Player_controller
 
     internal override void Setup_player()
     {
+        base.Setup_player();
         attack_Animation = GetNode<AnimationPlayer>("%Attack_Animation");
         attack_area = GetNode<Area2D>("%Attack_Area");
-        GetCharacterStats(Global.ChosenCharacterID);
+        
     }
 
-    private void temp()
-    {
-        bool test;
-        bool test2;
-        test = player_stats.TryAdd("Health", 100f);
-        test2 = player_stats.TryAdd("Damage", 4f);
-        if (test == false || test2 == false)
-        {
-            GD.Print(test);
-            GD.Print(test2);
-        }
-    }
 
     public void _on_attack_area_area_entered(Area2D area)
     {
