@@ -9,10 +9,12 @@ public partial class GameManagerScrip : Node
     public Area2D spawnArea;
 
     //"res://Assets/Scenes/Characters/Player.tscn"
+    Godot.Collections.Array waves;
 
     public override void _Ready()
     {
         SpawnPlayer();
+
     }
 
     private void SpawnPlayer()
@@ -24,4 +26,30 @@ public partial class GameManagerScrip : Node
         var Player = playerCharacter.Instantiate();
         PlayerSpawn.AddChild(Player);
     }
+
+    private void getWavesData()
+    {
+        String query = "";
+        waves = DataBase.query(query);
+
+    }
+
+    private void createSpawnQueue(int currentWaveNumber)
+    {
+        Godot.Collections.Dictionary currentWaveEnemies = (Godot.Collections.Dictionary)waves[currentWaveNumber];
+    }
+
+    private void spawnEnemies(Godot.Collections.Dictionary currentWaveEnemies)
+    {
+        foreach (String key in currentWaveEnemies.Keys)
+        {
+
+        }
+    }
+
+    public void onSpawnTimerTimeout()
+    {
+        
+    }
+
 }
