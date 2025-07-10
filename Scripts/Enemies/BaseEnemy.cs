@@ -45,4 +45,6 @@ public partial class BaseEnemy : Area2D
             QueueFree();
         }
     }
+
+    public void setPosition(Vector2 position) => Position = position;
 }

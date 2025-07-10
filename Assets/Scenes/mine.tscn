@@ -445,6 +445,7 @@ unique_name_in_owner = true
 position = Vector2(1000, 800)
 
 [node name="SpawnArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 0
 input_pickable = false
@@ -454,5 +455,7 @@ position = Vector2(799, 799)
 shape = SubResource("RectangleShape2D_71lpf")
 
 [node name="SpawnTimer" type="Timer" parent="SpawnArea"]
+
+[node name="Node" type="Node" parent="SpawnArea"]
 
 [connection signal="timeout" from="SpawnArea/SpawnTimer" to="." method="onSpawnTimerTimeout"]
