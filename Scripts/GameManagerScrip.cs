@@ -67,6 +67,7 @@ public partial class GameManagerScrip : Node
         {
             if (enemiesDictionary.ContainsKey(key))
             {
+                Godot.Collections.Dictionary<String, Godot.Variant> _enemyStats = getEnemyStats(key);
                 Vector2 spawnPos = pickSpawnLocation();
                 for (int i = 0; i < (int)currentWaveEnemies[key]; i++)
                 {
@@ -74,6 +75,7 @@ public partial class GameManagerScrip : Node
                     BaseEnemy enemy = (BaseEnemy)enemiesDictionary[key].Instantiate();
                     spawnArea.AddChild(enemy);
                     enemy.setPosition(spawnposRandomizer);
+                    enemy.setUpEnemy(_enemyStats);
                 }
             }
             else
@@ -86,10 +88,22 @@ public partial class GameManagerScrip : Node
         }
     }
 
+
+    private Godot.Collections.Dictionary<String, Godot.Variant> getEnemyStats(String enemyKey)
+    {
+        Godot.Collections.Dictionary<String, Godot.Variant> enemyStats;
+        string query = "SELECT a.* FROM Enemies a WHERE a.EnemyName = ?";
+        Godot.Collections.Dictionary<String, Godot.Variant> a = (Godot.Collections.Dictionary<String, Godot.Variant>)DataBase.query_with_bindings(query, [enemyKey])[0];
+        enemyStats = a;
+        return enemyStats;
+    }
+
     private Vector2 pickSpawnLocation()
     {
-        float x_coordinate = (float)GD.RandRange(_area.Position.X, _area.Size.X);
-        float y_coordinate = (float)GD.RandRange(_area.Position.Y, _area.Size.Y);
+        float x_coordinate = (float)GD.RandRange(0, 800);
+        float y_coordinate = (float)GD.RandRange(0, 800);
+        GD.Print(x_coordinate);
+        GD.Print(y_coordinate);
         return new Vector2(x_coordinate, y_coordinate);
     }
     private Vector2 spawnPosVariation(Vector2 originalPos)
