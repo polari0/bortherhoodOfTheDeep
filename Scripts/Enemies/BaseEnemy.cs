@@ -12,11 +12,18 @@ public partial class BaseEnemy : Area2D
     float enemy_damage = 5f;
     public override void _Ready()
     {
-        player_node = (Player_controller)GetNode<Node2D>("%Player_spawn").GetChild(0);
+        setUpEnemy();
     }
 
+
+    public virtual void setUpEnemy()
+    {
+        player_node = (Player_controller)GetTree().CurrentScene.GetNode<Node2D>("%PlayerSpawn").GetChild(0);
+    }
     public override void _Process(double delta)
     {
+        // if (player_node == null)
+        //     player_node = (Player_controller)GetNode<Node2D>("%PlayerSpawn").GetChild(0);
         movement(delta);
     }
 

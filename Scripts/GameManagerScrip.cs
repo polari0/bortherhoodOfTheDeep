@@ -8,6 +8,8 @@ public partial class GameManagerScrip : Node
     public Node2D PlayerSpawn;
     [Export]
     public Area2D spawnArea;
+    [Export]
+    public Timer waveTimer;
 
     //For now this should work but Maybe for mod support change to this fill from database
     //instead
@@ -18,6 +20,9 @@ public partial class GameManagerScrip : Node
     Godot.Collections.Array waves;
 
 
+    private int currentWave = 0;
+    private bool waveActive;
+
     private Rect2 _area;
     private CollisionShape2D _spawnArea;
 
@@ -26,6 +31,8 @@ public partial class GameManagerScrip : Node
         SpawnPlayer();
         CollisionShape2D _spawnArea = spawnArea.GetChild<CollisionShape2D>(0);
         Rect2 _area = _spawnArea.GetShape().GetRect();
+        currentWave = 1;
+        getWavesData();
     }
 
     private void SpawnPlayer()
@@ -40,33 +47,44 @@ public partial class GameManagerScrip : Node
 
     private void getWavesData()
     {
-        String query = "";
+        String query = "SELECT * FROM Waves";
         waves = DataBase.query(query);
-
+        createSpawnQueue(currentWave);
     }
 
     private void createSpawnQueue(int currentWaveNumber)
     {
-        Godot.Collections.Dictionary currentWaveEnemies = (Godot.Collections.Dictionary)waves[currentWaveNumber];
+        Godot.Collections.Dictionary currentWaveEnemies = (Godot.Collections.Dictionary)waves[currentWaveNumber - 1];
+        spawnEnemies(currentWaveEnemies);
+        waveActive = true;
+        waveTimer.Start(5);
     }
 
     private async void spawnEnemies(Godot.Collections.Dictionary currentWaveEnemies)
     {
+        
         foreach (String key in currentWaveEnemies.Keys)
         {
-            Vector2 spawnPos = pickSpawnLocation();
-            for (int i = 0; i < (int)currentWaveEnemies[key]; i++)
+            if (enemiesDictionary.ContainsKey(key))
             {
-                Vector2 spawnposRandomizer = spawnPosVariation(spawnPos);
-                BaseEnemy enemy = (BaseEnemy)enemiesDictionary[key].Instantiate();
-                spawnArea.AddChild(enemy);
-                enemy.setPosition(spawnposRandomizer);
+                Vector2 spawnPos = pickSpawnLocation();
+                for (int i = 0; i < (int)currentWaveEnemies[key]; i++)
+                {
+                    Vector2 spawnposRandomizer = spawnPosVariation(spawnPos);
+                    BaseEnemy enemy = (BaseEnemy)enemiesDictionary[key].Instantiate();
+                    spawnArea.AddChild(enemy);
+                    enemy.setPosition(spawnposRandomizer);
+                }
             }
+            else
+                GD.Print("Enemy not present in wave");
         }
-        await ToSignal(GetTree().CreateTimer(10), SceneTreeTimer.SignalName.Timeout);
-        spawnEnemies(currentWaveEnemies);
+        if (waveActive)
+        {
+            await ToSignal(GetTree().CreateTimer(2), SceneTreeTimer.SignalName.Timeout);
+            spawnEnemies(currentWaveEnemies);
+        }
     }
-
 
     private Vector2 pickSpawnLocation()
     {
@@ -84,7 +102,9 @@ public partial class GameManagerScrip : Node
 
     public void onSpawnTimerTimeout()
     {
-
+        GD.Print("Wave changed");
+        waveActive = false;
+        createSpawnQueue(currentWave);
     }
 
 }
