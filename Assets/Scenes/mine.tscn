@@ -428,10 +428,11 @@ sources/1 = SubResource("TileSetAtlasSource_u1otr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71lpf"]
 size = Vector2(1598, 1598)
 
-[node name="Mine" type="Node2D" node_paths=PackedStringArray("PlayerSpawn", "spawnArea", "waveTimer")]
+[node name="Mine" type="Node2D" node_paths=PackedStringArray("PlayerSpawn", "spawnArea", "WaveEnemies", "waveTimer")]
 script = ExtResource("1_d1kgw")
 PlayerSpawn = NodePath("PlayerSpawn")
 spawnArea = NodePath("SpawnArea")
+WaveEnemies = NodePath("SpawnArea/WaveEnemies")
 waveTimer = NodePath("SpawnArea/WaveTimer")
 enemiesDictionary = Dictionary[String, PackedScene]({
 "Spider": ExtResource("2_psnrx")
@@ -457,7 +458,7 @@ shape = SubResource("RectangleShape2D_71lpf")
 
 [node name="WaveTimer" type="Timer" parent="SpawnArea"]
 
-[node name="Node" type="Node" parent="SpawnArea"]
+[node name="WaveEnemies" type="Node" parent="SpawnArea"]
 
 [node name="PlayerSpawn" type="Node2D" parent="."]
 unique_name_in_owner = true

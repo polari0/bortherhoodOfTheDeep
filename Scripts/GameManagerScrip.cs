@@ -9,6 +9,8 @@ public partial class GameManagerScrip : Node
     [Export]
     public Area2D spawnArea;
     [Export]
+    public Node WaveEnemies;
+    [Export]
     public Timer waveTimer;
 
     //For now this should work but Maybe for mod support change to this fill from database
@@ -57,12 +59,12 @@ public partial class GameManagerScrip : Node
         Godot.Collections.Dictionary currentWaveEnemies = (Godot.Collections.Dictionary)waves[currentWaveNumber - 1];
         spawnEnemies(currentWaveEnemies);
         waveActive = true;
-        waveTimer.Start(5);
+        waveTimer.Start(10);
     }
 
     private async void spawnEnemies(Godot.Collections.Dictionary currentWaveEnemies)
     {
-        
+
         foreach (String key in currentWaveEnemies.Keys)
         {
             if (enemiesDictionary.ContainsKey(key))
@@ -73,7 +75,7 @@ public partial class GameManagerScrip : Node
                 {
                     Vector2 spawnposRandomizer = spawnPosVariation(spawnPos);
                     BaseEnemy enemy = (BaseEnemy)enemiesDictionary[key].Instantiate();
-                    spawnArea.AddChild(enemy);
+                    WaveEnemies.AddChild(enemy);
                     enemy.setPosition(spawnposRandomizer);
                     enemy.setUpEnemy(_enemyStats);
                 }
@@ -109,16 +111,27 @@ public partial class GameManagerScrip : Node
     private Vector2 spawnPosVariation(Vector2 originalPos)
     {
         Vector2 newPos;
-        newPos = originalPos + new Vector2(GD.RandRange(10 , 40), GD.RandRange(0 , 10));
+        newPos = originalPos + new Vector2(GD.RandRange(10, 40), GD.RandRange(0, 10));
 
         return newPos;
     }
+
 
     public void onSpawnTimerTimeout()
     {
         GD.Print("Wave changed");
         waveActive = false;
+        deleteChildren();
         createSpawnQueue(currentWave);
     }
 
+
+    private void deleteChildren()
+    {
+        Godot.Collections.Array<Node> children = WaveEnemies.GetChildren();
+        foreach (Node child in children)
+        {
+            child.QueueFree();
+        } 
+    }
 }
