@@ -321,3 +321,4 @@ libraries = {
 speed_scale = 1.3
 
 [connection signal="area_entered" from="Node2D/Attack_Area" to="." method="_on_attack_area_area_entered"]
+[connection signal="body_entered" from="Node2D/Attack_Area" to="." method="_on_attack_area_body_entered"]

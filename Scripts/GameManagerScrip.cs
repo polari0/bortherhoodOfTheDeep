@@ -109,7 +109,7 @@ public partial class GameManagerScrip : Node
     private Vector2 spawnPosVariation(Vector2 originalPos)
     {
         Vector2 newPos;
-        newPos = originalPos + new Vector2(GD.RandRange(0 , 10), GD.RandRange(0 , 10));
+        newPos = originalPos + new Vector2(GD.RandRange(10 , 40), GD.RandRange(0 , 10));
 
         return newPos;
     }
