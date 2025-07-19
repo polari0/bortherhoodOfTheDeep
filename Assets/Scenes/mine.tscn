@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0g6nogj2mfr1" path="res://Scripts/GameManagerScrip.cs" id="1_d1kgw"]
 [ext_resource type="Texture2D" uid="uid://b7yrd63ra2rdf" path="res://Assets/Cave Tileset/Gray_Tile_Terrain (16 x 16).png" id="1_fl5js"]
 [ext_resource type="Texture2D" uid="uid://bqc4htsp1jujt" path="res://Assets/Cave Tileset/Scaffolding_and_BG_Parts (16 x 16).png" id="2_71lpf"]
-[ext_resource type="PackedScene" uid="uid://le32ixilnwdn" path="res://Assets/Scenes/Enemies/EnemyBase.tscn" id="2_psnrx"]
+[ext_resource type="PackedScene" uid="uid://bvak5uvvw2dpk" path="res://Assets/Scenes/Enemies/Spider.tscn" id="2_psnrx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_psnrx"]
 texture = ExtResource("1_fl5js")
