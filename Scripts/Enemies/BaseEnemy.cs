@@ -10,9 +10,9 @@ public partial class BaseEnemy : CharacterBody2D
     public SoftCollision softCollision;
 
     internal Player_controller player_node;
-    double enemy_speed = 100;
-    float enemy_health = 1000f;
-    float enemy_damage = 5f;
+    internal float enemy_speed = 100;
+    internal float enemy_health = 1000f;
+    internal float enemy_damage = 5f;
 
     private Godot.Collections.Dictionary<String, Godot.Variant> enemyStats; 
 
@@ -25,7 +25,9 @@ public partial class BaseEnemy : CharacterBody2D
     public virtual void setUpEnemy(Godot.Collections.Dictionary<String, Godot.Variant> _enemyStats)
     {
         player_node = (Player_controller)GetTree().CurrentScene.GetNode<Node2D>("%PlayerSpawn").GetChild(0);
-        enemyStats = _enemyStats;
+        enemy_speed = (float)_enemyStats["EnemySpeed"];
+        enemy_health = (float)_enemyStats["EnemyHealth"];
+        enemy_damage = (float)_enemyStats["EnemyDamage"];
     }
     public override void _Process(double delta)
     {
@@ -51,14 +53,7 @@ public partial class BaseEnemy : CharacterBody2D
     internal virtual void movement(double delta)
     {
         Godot.Vector2 playerpos = player_node.GlobalPosition;
-        Velocity = GlobalPosition.DirectionTo(playerpos) * (float)enemyStats["EnemySpeed"];
-
-        if (softCollision.isColliding())
-        {
-            Velocity += softCollision.getPushVector() * (float)(delta * 5000);
-        }
-        MoveAndSlide();
-        //GlobalPosition = GlobalPosition.MoveToward(velocity, (float)(enemy_speed * delta));
+        Velocity = GlobalPosition.DirectionTo(playerpos) * enemy_speed;
     }
 
     internal virtual void Take_damage(float damage_taken)

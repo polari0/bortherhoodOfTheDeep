@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://qktxk8o1j28" path="res://Scripts/Enemies/SoftCollision.cs" id="1_qdt8o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nasl1"]
-radius = 8.0
+radius = 9.05539
 
 [node name="SoftCollisionArea" type="Area2D"]
 collision_layer = 16

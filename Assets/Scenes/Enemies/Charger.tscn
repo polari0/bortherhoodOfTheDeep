@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c17v78bl2bb71"]
+
+[ext_resource type="Script" uid="uid://do6chm7kikby7" path="res://Scripts/Enemies/Charger.cs" id="1_714le"]
+[ext_resource type="Texture2D" uid="uid://c60tumv4acrd4" path="res://Assets/Sprites/EnemySprites/Snapper.png" id="2_714le"]
+[ext_resource type="PackedScene" uid="uid://idtwwo325yqh" path="res://Assets/Scenes/Enemies/enemyComponents/SoftCollisionArea.tscn" id="3_t1w1b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hkqky"]
+radius = 3.16228
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8etnp"]
+radius = 12.0416
+
+[node name="Charger" type="CharacterBody2D" node_paths=PackedStringArray("chargeTimer")]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_714le")
+chargeTimer = NodePath("ChargeTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_714le")
+
+[node name="EnemyCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_hkqky")
+
+[node name="SoftCollisionArea" parent="." instance=ExtResource("3_t1w1b")]
+
+[node name="CollisionShape2D" parent="SoftCollisionArea" index="0"]
+position = Vector2(0, -2)
+
+[node name="Attack_area" type="Area2D" parent="."]
+position = Vector2(-13, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_area"]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_8etnp")
+
+[node name="ChargeTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Attack_area" to="." method="_on_body_entered"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
+
+[editable path="SoftCollisionArea"]

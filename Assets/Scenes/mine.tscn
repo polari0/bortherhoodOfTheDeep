@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://6qpjvkxd15ul"]
+[gd_scene load_steps=12 format=4 uid="uid://6qpjvkxd15ul"]
 
 [ext_resource type="Script" uid="uid://b0g6nogj2mfr1" path="res://Scripts/GameManagerScrip.cs" id="1_d1kgw"]
 [ext_resource type="Texture2D" uid="uid://b7yrd63ra2rdf" path="res://Assets/Cave Tileset/Gray_Tile_Terrain (16 x 16).png" id="1_fl5js"]
 [ext_resource type="Texture2D" uid="uid://bqc4htsp1jujt" path="res://Assets/Cave Tileset/Scaffolding_and_BG_Parts (16 x 16).png" id="2_71lpf"]
 [ext_resource type="PackedScene" uid="uid://bvak5uvvw2dpk" path="res://Assets/Scenes/Enemies/Spider.tscn" id="2_psnrx"]
+[ext_resource type="PackedScene" uid="uid://c17v78bl2bb71" path="res://Assets/Scenes/Enemies/Charger.tscn" id="3_d1kgw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_psnrx"]
 texture = ExtResource("1_fl5js")
@@ -435,6 +436,7 @@ spawnArea = NodePath("SpawnArea")
 WaveEnemies = NodePath("SpawnArea/WaveEnemies")
 waveTimer = NodePath("SpawnArea/WaveTimer")
 enemiesDictionary = Dictionary[String, PackedScene]({
+"Snapper": ExtResource("3_d1kgw"),
 "Spider": ExtResource("2_psnrx")
 })
 

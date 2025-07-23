@@ -1,24 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvak5uvvw2dpk"]
+[gd_scene load_steps=6 format=3 uid="uid://bvak5uvvw2dpk"]
 
 [ext_resource type="Texture2D" uid="uid://b6tff44su46aq" path="res://Assets/Sprites/EnemySprites/Spider_Placeholder.png" id="1_cbnsp"]
 [ext_resource type="Script" uid="uid://dw7lpd8kvrjkw" path="res://Scripts/Enemies/Spider.cs" id="1_hkqky"]
 [ext_resource type="PackedScene" uid="uid://idtwwo325yqh" path="res://Assets/Scenes/Enemies/enemyComponents/SoftCollisionArea.tscn" id="2_5xg3p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hkqky"]
-radius = 13.0384
+radius = 3.16228
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8etnp"]
+radius = 12.0416
 
 [node name="Node2D" type="CharacterBody2D" node_paths=PackedStringArray("softCollision")]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_hkqky")
 softCollision = NodePath("SoftCollisionArea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_cbnsp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Attack_Area" type="CollisionShape2D" parent="."]
 position = Vector2(3, -2.38419e-07)
-rotation = 1.03149
 shape = SubResource("CircleShape2D_hkqky")
 
 [node name="SoftCollisionArea" parent="." instance=ExtResource("2_5xg3p")]
@@ -26,5 +28,13 @@ position = Vector2(3, 3)
 
 [node name="CollisionShape2D" parent="SoftCollisionArea" index="0"]
 position = Vector2(0, -3)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_8etnp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
 
 [editable path="SoftCollisionArea"]

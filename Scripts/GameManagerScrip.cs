@@ -56,6 +56,9 @@ public partial class GameManagerScrip : Node
 
     private void createSpawnQueue(int currentWaveNumber)
     {
+        GD.Print(currentWaveNumber);
+        if (currentWaveNumber > waves.Count)
+            currentWaveNumber = (int)GD.RandRange(10, 20);
         Godot.Collections.Dictionary currentWaveEnemies = (Godot.Collections.Dictionary)waves[currentWaveNumber - 1];
         spawnEnemies(currentWaveEnemies);
         waveActive = true;
@@ -78,6 +81,7 @@ public partial class GameManagerScrip : Node
                     WaveEnemies.AddChild(enemy);
                     enemy.setPosition(spawnposRandomizer);
                     enemy.setUpEnemy(_enemyStats);
+                    GD.Print(key);
                 }
             }
             else
@@ -122,6 +126,7 @@ public partial class GameManagerScrip : Node
         GD.Print("Wave changed");
         waveActive = false;
         deleteChildren();
+        currentWave++;
         createSpawnQueue(currentWave);
     }
 

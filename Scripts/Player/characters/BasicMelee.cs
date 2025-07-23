@@ -36,10 +36,8 @@ public partial class BasicMelee : Player_controller
 
     public void _on_attack_area_body_entered(PhysicsBody2D body)
     {
-        GD.Print("Got here");
         if (body is BaseEnemy)
         {
-            GD.Print("Enemy detected");
             BaseEnemy target = (BaseEnemy)body;
             target.Take_damage((float)player_stats["Damage"]);
         }
@@ -49,7 +47,6 @@ public partial class BasicMelee : Player_controller
         if (canTakeDamage)
         {
             player_stats["Health"] = (float)(player_stats["Health"]) - damage;
-            GD.Print("Damage taken");
             if ((float)player_stats["Health"] < 0f)
                 die();
         }
@@ -58,6 +55,5 @@ public partial class BasicMelee : Player_controller
     internal override void GetCharacterStats(int characterID)
     {
         base.GetCharacterStats(characterID);
-        GD.Print("Also do this");
     }
 }
