@@ -13,6 +13,9 @@ public partial class GameManagerScrip : Node
     [Export]
     public Timer waveTimer;
 
+    [Export]
+    public float waveTime = 10;
+
     //For now this should work but Maybe for mod support change to this fill from database
     //instead
     [Export]
@@ -62,7 +65,7 @@ public partial class GameManagerScrip : Node
         Godot.Collections.Dictionary currentWaveEnemies = (Godot.Collections.Dictionary)waves[currentWaveNumber - 1];
         spawnEnemies(currentWaveEnemies);
         waveActive = true;
-        waveTimer.Start(10);
+        waveTimer.Start(waveTime);
     }
 
     private async void spawnEnemies(Godot.Collections.Dictionary currentWaveEnemies)
