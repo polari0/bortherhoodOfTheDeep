@@ -20,13 +20,12 @@ public partial class Player_controller : CharacterBody2D
     [Export]
     public Godot.Collections.Dictionary<String, Godot.Variant> player_stats;
 
+    internal Godot.Collections.Array<CharacterAbilityBase> playerAbilities;
+
     public Godot.Vector2 velocity;
-    private int little_helper_count = 0;
     internal AnimatedSprite2D player_animation;
-    private Array<Node> helper_positions;
     public Godot.Vector2 move_direction;
-    [Signal]
-    public delegate void AnimationChangedEventHandler(string newAnimation, bool direction);
+
     [Signal]
     public delegate void DamageTakenEventHandler();
 
@@ -102,6 +101,8 @@ public partial class Player_controller : CharacterBody2D
         string query = "SELECT a.* FROM Characters a WHERE a.ID = ?";
         player_stats = (Godot.Collections.Dictionary<String, Variant>)DataBase.query_with_bindings(query, [characterID])[0];
     }
+
+    public virtual void buyAbility() { }
 
     public virtual void Take_damage(float damage) { }
 

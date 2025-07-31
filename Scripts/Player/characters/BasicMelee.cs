@@ -22,18 +22,6 @@ public partial class BasicMelee : Player_controller
         
     }
 
-
-    // public void _on_attack_area_area_entered(Area2D area)
-    // {
-    //     GD.Print("Got here");
-    //     if (area is BaseEnemy)
-    //     {
-    //         GD.Print("Enemy detected");
-    //         BaseEnemy target = (BaseEnemy)area;
-    //         target.Take_damage((float)player_stats["Damage"]);
-    //     }
-    // }
-
     public void _on_attack_area_body_entered(PhysicsBody2D body)
     {
         if (body is BaseEnemy)

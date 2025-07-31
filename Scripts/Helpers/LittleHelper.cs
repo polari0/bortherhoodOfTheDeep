@@ -22,7 +22,7 @@ public partial class LittleHelper : Node2D
     {
         helper_animation = GetNode<AnimatedSprite2D>("%helper_animation");
         player_controller = (Player_controller)GetParent().GetParent().GetParent();
-        player_controller.AnimationChanged += _On_parent_animation_changed;
+        //player_controller.AnimationChanged += _On_parent_animation_changed;
         
         //Testing
         string query = "SELECT a.* FROM Weapons a  WHERE a.ID = 1";
