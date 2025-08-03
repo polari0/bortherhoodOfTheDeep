@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckb3ef772ty3j"]
+[gd_scene load_steps=3 format=3 uid="uid://ckb3ef772ty3j"]
 
 [ext_resource type="Script" uid="uid://ck7h86qu8eshu" path="res://Scripts/Player/characters/Abilities/Orm/HammerThrow.cs" id="1_s3lig"]
+[ext_resource type="PackedScene" uid="uid://b6ltnq60sg3b2" path="res://Assets/Scenes/Characters/OrmAbilities/Hammer.tscn" id="2_ppr1m"]
 
-[node name="HammerThrow" type="Node2D"]
+[node name="HammerThrow" type="Node2D" node_paths=PackedStringArray("abilityTimer")]
 script = ExtResource("1_s3lig")
+throwingHammer = ExtResource("2_ppr1m")
+abilityTimer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="OnAbilityTimerTimeOuts"]
+[connection signal="timeout" from="Timer" to="." method="OnAbilityTimerTimeOut"]
