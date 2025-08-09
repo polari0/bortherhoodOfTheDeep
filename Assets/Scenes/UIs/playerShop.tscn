@@ -1,0 +1,118 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddrl5kpgc42xb"]
+
+[ext_resource type="PackedScene" uid="uid://c7or573ab4fd6" path="res://Assets/Scenes/UIs/ShopItem.tscn" id="1_2ps6r"]
+[ext_resource type="PackedScene" uid="uid://tlh2as0m7khm" path="res://Assets/Scenes/UIs/abilityIcon.tscn" id="1_ousho"]
+
+[node name="PlayerShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="OwnedAbilities" type="Panel" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="Hboxcontainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/OwnedAbilities"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AbilityIcon" parent="HBoxContainer/VBoxContainer/OwnedAbilities/Hboxcontainer" instance=ExtResource("1_ousho")]
+layout_mode = 2
+
+[node name="AbilityIcon2" parent="HBoxContainer/VBoxContainer/OwnedAbilities/Hboxcontainer" instance=ExtResource("1_ousho")]
+layout_mode = 2
+
+[node name="AbilityIcon3" parent="HBoxContainer/VBoxContainer/OwnedAbilities/Hboxcontainer" instance=ExtResource("1_ousho")]
+layout_mode = 2
+
+[node name="AbilityIcon4" parent="HBoxContainer/VBoxContainer/OwnedAbilities/Hboxcontainer" instance=ExtResource("1_ousho")]
+layout_mode = 2
+
+[node name="ShopItems" type="Panel" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.7
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/ShopItems"]
+layout_mode = 2
+offset_right = 918.0
+offset_bottom = 451.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShopItem" parent="HBoxContainer/VBoxContainer/ShopItems/VBoxContainer2" instance=ExtResource("1_2ps6r")]
+layout_mode = 2
+
+[node name="ShopItem2" parent="HBoxContainer/VBoxContainer/ShopItems/VBoxContainer2" instance=ExtResource("1_2ps6r")]
+layout_mode = 2
+
+[node name="ShopItem3" parent="HBoxContainer/VBoxContainer/ShopItems/VBoxContainer2" instance=ExtResource("1_2ps6r")]
+layout_mode = 2
+
+[node name="ShopItem4" parent="HBoxContainer/VBoxContainer/ShopItems/VBoxContainer2" instance=ExtResource("1_2ps6r")]
+layout_mode = 2
+
+[node name="PlayerStats" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PlayerStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2
+text = "Health"
+
+[node name="Label2" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2
+text = "Damage"
+
+[node name="Label3" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2
+text = "Speed"
+
+[node name="Label4" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2
+text = "AttackSpeed"
+
+[node name="Label5" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2
+text = "test"
+
+[node name="Label6" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label7" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label8" type="Label" parent="HBoxContainer/PlayerStats/VBoxContainer"]
+layout_mode = 2

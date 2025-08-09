@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx1r2o3rbfd2u"]
+
+[ext_resource type="PackedScene" uid="uid://ddrl5kpgc42xb" path="res://Assets/Scenes/UIs/playerShop.tscn" id="1_y0oud"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerShop" parent="HBoxContainer" instance=ExtResource("1_y0oud")]
+layout_mode = 2

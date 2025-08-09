@@ -20,7 +20,7 @@ public partial class HammerThrow : CharacterAbilityBase
         {
             AbilityHitBox hammer = (AbilityHitBox)throwingHammer.Instantiate();
             Vector2 dir = new Vector2(Mathf.Cos(0 + (45 * i)), Mathf.Sin(0 + (45 * i)));
-            hammer.setUp(5000, 10, 30, dir);
+            hammer.setUp(5000, 10, 300, dir);
             hammer.GlobalPosition = parent.Position;
             AddChild(hammer);
         }

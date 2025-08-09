@@ -18,6 +18,8 @@ public partial class AbilityHitBox : Area2D
     /// </summary>
     /// <param name="lifeTime">Time before ability disapears from the screen in miliseconds</param>
     /// <param name="damage">Damage The abilit does</param>
+    /// <param name="speed">Ability Speed</param>
+    /// <param name="direction">Ability Direction</param>
     public void setUp(float lifeTime, float damage, float speed, Vector2 direction)
     {
         _damage = damage;
