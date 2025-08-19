@@ -26,7 +26,6 @@ public partial class AbilityHitBox : Area2D
         _direction = direction;
         attackSpeed = speed;
         destroyAbility(lifeTime);
-        GD.Print("hammer Time");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -44,7 +43,6 @@ public partial class AbilityHitBox : Area2D
     private void OnSelfImolationTimerEndedEvent(Object source, ElapsedEventArgs e)
     {
         QueueFree();
-        GD.Print("hammer gone");
     }
 
     public void OnBodyEntered(PhysicsBody2D body)

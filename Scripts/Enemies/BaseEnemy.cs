@@ -62,7 +62,6 @@ public partial class BaseEnemy : CharacterBody2D
         enemy_health -= damage_taken;
         if (enemy_health < 0)
         {
-            GD.Print("DEATH");
             QueueFree();
         }
     }

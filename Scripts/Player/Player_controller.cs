@@ -77,6 +77,11 @@ public partial class Player_controller : CharacterBody2D
             player_animation.Play("Idle");
     }
 
+    public Vector2 getPosition()
+    {
+        return GlobalPosition;
+    }
+
     internal virtual async Task Iframes()
     {
         canTakeDamage = false;
@@ -88,11 +93,9 @@ public partial class Player_controller : CharacterBody2D
 
     internal virtual void die()
     {
-        GD.Print("Im dead");
     }
-
     internal virtual void Setup_player()
-    { 
+    {
         GetCharacterStats(Global.ChosenCharacterID);
     }
 

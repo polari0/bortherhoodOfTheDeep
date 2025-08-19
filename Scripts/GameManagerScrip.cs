@@ -21,12 +21,17 @@ public partial class GameManagerScrip : Node
     [Export]
     public Godot.Collections.Dictionary<String, PackedScene> enemiesDictionary;
 
+    [Export]
+    public Camera2D camera;
+
     //"res://Assets/Scenes/Characters/Player.tscn"
     Godot.Collections.Array waves;
 
 
     private int currentWave = 0;
     private bool waveActive;
+
+    private Player_controller _Player;
 
     private Rect2 _area;
     private CollisionShape2D _spawnArea;
@@ -40,6 +45,14 @@ public partial class GameManagerScrip : Node
         getWavesData();
     }
 
+    public override void _Process(double delta)
+    {
+        if (_Player != null)
+        {
+            camera.SetPosition(_Player.getPosition());
+        }
+    }
+
     private void SpawnPlayer()
     {
         string query = "SELECT a.Path FROM Characters a WHERE a.ID = ?";
@@ -48,6 +61,7 @@ public partial class GameManagerScrip : Node
         PackedScene playerCharacter = GD.Load<PackedScene>(characterPath);
         var Player = playerCharacter.Instantiate();
         PlayerSpawn.AddChild(Player);
+        _Player = (Player_controller)PlayerSpawn.GetChild(0);
     }
 
     private void getWavesData()
@@ -84,7 +98,6 @@ public partial class GameManagerScrip : Node
                     WaveEnemies.AddChild(enemy);
                     enemy.setPosition(spawnposRandomizer);
                     enemy.setUpEnemy(_enemyStats);
-                    GD.Print(key);
                 }
             }
             else
@@ -111,8 +124,6 @@ public partial class GameManagerScrip : Node
     {
         float x_coordinate = (float)GD.RandRange(0, 800);
         float y_coordinate = (float)GD.RandRange(0, 800);
-        GD.Print(x_coordinate);
-        GD.Print(y_coordinate);
         return new Vector2(x_coordinate, y_coordinate);
     }
     private Vector2 spawnPosVariation(Vector2 originalPos)
@@ -126,7 +137,6 @@ public partial class GameManagerScrip : Node
 
     public void onSpawnTimerTimeout()
     {
-        GD.Print("Wave changed");
         waveActive = false;
         deleteChildren();
         currentWave++;
