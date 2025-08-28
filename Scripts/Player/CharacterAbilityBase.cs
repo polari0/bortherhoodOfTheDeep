@@ -10,6 +10,10 @@ public partial class CharacterAbilityBase : Node2D
     [Export]
     public Node2D parent;
 
+    public int abilityID;
+
+    public int abilityLevel;
+
     internal virtual void useAbility() { }
 
 }

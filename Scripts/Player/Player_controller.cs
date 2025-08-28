@@ -20,7 +20,8 @@ public partial class Player_controller : CharacterBody2D
     [Export]
     public Godot.Collections.Dictionary<String, Godot.Variant> player_stats;
 
-    internal Godot.Collections.Array<CharacterAbilityBase> playerAbilities;
+    [Export]
+    public Godot.Collections.Array<CharacterAbilityBase> playerAbilities;
 
     public Godot.Vector2 velocity;
     internal AnimatedSprite2D player_animation;

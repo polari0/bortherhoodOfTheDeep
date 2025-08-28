@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://tlh2as0m7khm"]
+[gd_scene load_steps=2 format=3 uid="uid://tlh2as0m7khm"]
+
+[ext_resource type="Script" uid="uid://cy8x6v2eemf6u" path="res://Scripts/UI_scripts/ShopAbilityIcon.cs" id="1_4hnwm"]
 
 [node name="AbilityIcon" type="Panel"]
 anchors_preset = 15
@@ -8,6 +10,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_4hnwm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

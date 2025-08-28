@@ -11,6 +11,10 @@ public partial class GameManagerScrip : Node
     [Export]
     public Node WaveEnemies;
     [Export]
+    public Shop shop;
+    [Export]
+    public Node2D mapNodes;
+    [Export]
     public Timer waveTimer;
 
     [Export]
@@ -42,6 +46,7 @@ public partial class GameManagerScrip : Node
         CollisionShape2D _spawnArea = spawnArea.GetChild<CollisionShape2D>(0);
         Rect2 _area = _spawnArea.GetShape().GetRect();
         currentWave = 1;
+        getImportantNodeReferences();
         getWavesData();
     }
 
@@ -134,13 +139,31 @@ public partial class GameManagerScrip : Node
         return newPos;
     }
 
+    private void getImportantNodeReferences()
+    {
+        shop = GetNode<Shop>("%Shop");
+        mapNodes = GetNode<Node2D>("%mapNodes");
+    }
+
+    private void openShop()
+    {
+        mapNodes.Visible = false;
+        shop.Visible = true;
+        shop.OpenShop(_Player);
+    }
+
+    private void closeShop()
+    {
+        mapNodes.Visible = true;
+        shop.Visible = false;
+    }
 
     public void onSpawnTimerTimeout()
     {
         waveActive = false;
         deleteChildren();
         currentWave++;
-        createSpawnQueue(currentWave);
+        openShop();
     }
 
 
@@ -150,6 +173,12 @@ public partial class GameManagerScrip : Node
         foreach (Node child in children)
         {
             child.QueueFree();
-        } 
+        }
+    }
+
+    public void NextWaveButtonPressed()
+    {
+        closeShop();
+        createSpawnQueue(currentWave);
     }
 }

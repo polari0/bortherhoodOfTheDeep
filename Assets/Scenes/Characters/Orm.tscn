@@ -279,11 +279,12 @@ _data = {
 &"attack": SubResource("Animation_aee6e")
 }
 
-[node name="Basic_melee" type="CharacterBody2D"]
+[node name="Basic_melee" type="CharacterBody2D" node_paths=PackedStringArray("playerAbilities")]
 z_index = 1
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_b2ifw")
+playerAbilities = [NodePath("ActiveWeapons/HammerThrow")]
 
 [node name="Animation_player" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
