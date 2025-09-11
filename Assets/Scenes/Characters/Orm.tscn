@@ -284,7 +284,7 @@ z_index = 1
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_b2ifw")
-playerAbilities = [NodePath("ActiveWeapons/HammerThrow")]
+playerAbilities = [NodePath("ActiveAbilities/HammerThrow")]
 
 [node name="Animation_player" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -319,9 +319,9 @@ libraries = {
 }
 speed_scale = 1.3
 
-[node name="ActiveWeapons" type="Node2D" parent="."]
+[node name="ActiveAbilities" type="Node2D" parent="."]
 
-[node name="HammerThrow" parent="ActiveWeapons" node_paths=PackedStringArray("parent") instance=ExtResource("4_etid3")]
+[node name="HammerThrow" parent="ActiveAbilities" node_paths=PackedStringArray("parent") instance=ExtResource("4_etid3")]
 parent = NodePath("..")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]

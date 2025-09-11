@@ -30,6 +30,9 @@ public partial class Player_controller : CharacterBody2D
     [Signal]
     public delegate void DamageTakenEventHandler();
 
+    [Signal]
+    public delegate void AbilitySetUpEventHandler();
+
     internal bool canTakeDamage = true;
 
     public override void _Ready()
@@ -98,6 +101,7 @@ public partial class Player_controller : CharacterBody2D
     internal virtual void Setup_player()
     {
         GetCharacterStats(Global.ChosenCharacterID);
+        EmitSignal(SignalName.AbilitySetUp);
     }
 
     internal virtual void GetCharacterStats(int characterID)
