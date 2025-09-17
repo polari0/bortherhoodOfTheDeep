@@ -7,6 +7,7 @@
 script = ExtResource("1_s3lig")
 throwingHammer = ExtResource("2_ppr1m")
 abilityTimer = NodePath("Timer")
+abilityID = 1
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

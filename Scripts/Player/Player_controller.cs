@@ -98,6 +98,7 @@ public partial class Player_controller : CharacterBody2D
     internal virtual void die()
     {
     }
+    
     internal virtual void Setup_player()
     {
         GetCharacterStats(Global.ChosenCharacterID);

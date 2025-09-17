@@ -59,3 +59,4 @@ func print_stack_on_database_error(error_msg: String) -> void:
 
 func is_persistent_db_connection_open() -> bool:
 	return _is_persistent_db_conn_open
+	Texture2D

@@ -10,6 +10,7 @@ public partial class CharacterAbilityBase : Node2D
     [Export]
     public Node2D parent;
 
+    [Export]
     public int abilityID;
 
     public int abilityLevel;
@@ -30,6 +31,17 @@ public partial class CharacterAbilityBase : Node2D
         Player_controller b = parent.GetParent<BasicMelee>();
         abilityDamage = (float)b.player_stats["AbilityDamage"];
         GD.Print((float)b.player_stats["AbilityDamage"]);
+    }
+
+    public Texture2D getAbilitiIcon()
+    {
+        Image image = new Image();
+        Texture2D texture2D;
+        string query = "SELECT a.AbilitySprite AS image FROM Abilities a WHERE a.ID = ?";
+        Godot.Collections.Dictionary<String, Byte[]> a = (Godot.Collections.Dictionary<String, Byte[]>)DataBase.query_with_bindings(query, [abilityID])[0];
+        image.LoadPngFromBuffer((Byte[])a["image"]);
+        texture2D = ImageTexture.CreateFromImage(image);
+        return texture2D;
     }
 }
 
