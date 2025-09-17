@@ -12,8 +12,6 @@ public partial class ShopAbilityIcon : Control
 
     public void setupIcon(CharacterAbilityBase ability)
     {
-        GD.Print("ABILITY id");
-        GD.Print(ability.abilityID);
         levelLablel.Text = ability.abilityLevel.ToString();
         abilityIcon.Texture = ability.getAbilitiIcon();
     }

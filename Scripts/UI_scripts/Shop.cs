@@ -21,6 +21,7 @@ public partial class Shop : Control
         HBoxContainer abilityContainer = GetNode<HBoxContainer>("%Abilities");
         abilities.Each((ability, n) =>
         {
+            GD.Print(n);
             ShopAbilityIcon a = abilityContainer.GetChild<ShopAbilityIcon>(n);
             a.setupIcon(ability);
 

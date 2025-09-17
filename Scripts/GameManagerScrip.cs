@@ -78,7 +78,6 @@ public partial class GameManagerScrip : Node
 
     private void createSpawnQueue(int currentWaveNumber)
     {
-        GD.Print(currentWaveNumber);
         if (currentWaveNumber > waves.Count)
             currentWaveNumber = (int)GD.RandRange(10, 20);
         Godot.Collections.Dictionary currentWaveEnemies = (Godot.Collections.Dictionary)waves[currentWaveNumber - 1];

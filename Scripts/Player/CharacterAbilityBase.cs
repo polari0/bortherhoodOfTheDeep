@@ -30,7 +30,6 @@ public partial class CharacterAbilityBase : Node2D
     {
         Player_controller b = parent.GetParent<BasicMelee>();
         abilityDamage = (float)b.player_stats["AbilityDamage"];
-        GD.Print((float)b.player_stats["AbilityDamage"]);
     }
 
     public Texture2D getAbilitiIcon()

@@ -42,7 +42,6 @@ public partial class Weapon : Node2D
     }
     public void _on_attack_timer_timeout()
     {
-        GD.Print("Swung");
         swing();
     }
 

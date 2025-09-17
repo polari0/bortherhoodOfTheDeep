@@ -58,7 +58,6 @@ public partial class BaseEnemy : CharacterBody2D
 
     internal virtual void Take_damage(float damage_taken)
     {
-        GD.Print(enemy_health);
         enemy_health -= damage_taken;
         if (enemy_health < 0)
         {
