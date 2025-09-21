@@ -9,10 +9,10 @@ public partial class Shop : Control
     public void OpenShop(Player_controller playerRef)
     {
         _playerRef = playerRef;
-        setAbilities(_playerRef.playerAbilities);
+        SetAbilities(_playerRef.playerAbilities);
     }
 
-    private void setAbilities(Godot.Collections.Array<CharacterAbilityBase> abilities)
+    private void SetAbilities(Godot.Collections.Array<CharacterAbilityBase> abilities)
     {
         // foreach (CharacterAbilityBase ability in abilities)
         // {
@@ -28,5 +28,33 @@ public partial class Shop : Control
         });
     }
 
+    private void SetShopItems()
+    {
+        HBoxContainer itemContainer = GetNode<HBoxContainer>("ShopItems");
+        for (int i = 0; i < 4; i++)
+        {
+            ShopItem a = itemContainer.GetChild<ShopItem>(i);
+            bool itemType = RollItemType();
+            if (itemType == false)
+            {
+                a.SetUpShopItem();
+            }
+            else
+                a.SetUpShopAbility();
 
+            
+        }
+    }
+
+    private bool RollItemType()
+    {
+        int random = GD.RandRange(0, 4);
+        if (random == 0)
+        {
+            return true;
+        }
+        else
+            return false;
+
+    }
 }

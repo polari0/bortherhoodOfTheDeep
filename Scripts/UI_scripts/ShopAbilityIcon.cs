@@ -13,7 +13,7 @@ public partial class ShopAbilityIcon : Control
     public void setupIcon(CharacterAbilityBase ability)
     {
         levelLablel.Text = ability.abilityLevel.ToString();
-        abilityIcon.Texture = ability.getAbilitiIcon();
+        abilityIcon.Texture = ability.getAbilityIcon();
     }
 
 }

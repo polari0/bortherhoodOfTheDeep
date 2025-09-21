@@ -32,7 +32,7 @@ public partial class CharacterAbilityBase : Node2D
         abilityDamage = (float)b.player_stats["AbilityDamage"];
     }
 
-    public Texture2D getAbilitiIcon()
+    public Texture2D getAbilityIcon()
     {
         Image image = new Image();
         Texture2D texture2D;
