@@ -162,6 +162,7 @@ public partial class GameManagerScrip : Node
         waveActive = false;
         deleteChildren();
         currentWave++;
+        waveTimer.Stop();
         openShop();
     }
 

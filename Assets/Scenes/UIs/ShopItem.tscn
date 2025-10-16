@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b3g1x13rhb4mn" path="res://Scripts/UI_scripts/ShopItem.cs" id="1_mksv1"]
 
-[node name="ShopItem" type="Panel"]
+[node name="ShopItem" type="Panel" node_paths=PackedStringArray("priceLable", "NameLable", "ItemTexture")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,8 +14,11 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_behavior_recursive = 2
-mouse_default_cursor_shape = 3
+mouse_default_cursor_shape = 2
 script = ExtResource("1_mksv1")
+priceLable = NodePath("HBoxContainer/PriceLabel")
+NameLable = NodePath("HBoxContainer/NameLabel")
+ItemTexture = NodePath("HBoxContainer/ItemTexture")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -25,19 +28,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="ItemTexture" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="NameLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 text = "test"
 
-[node name="Label2" type="Label" parent="HBoxContainer"]
+[node name="PriceLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4

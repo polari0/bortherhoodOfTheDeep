@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Shop : Control
 {
@@ -10,6 +11,7 @@ public partial class Shop : Control
     {
         _playerRef = playerRef;
         SetAbilities(_playerRef.playerAbilities);
+        SetShopItems();
     }
 
     private void SetAbilities(Godot.Collections.Array<CharacterAbilityBase> abilities)
@@ -30,20 +32,31 @@ public partial class Shop : Control
 
     private void SetShopItems()
     {
-        HBoxContainer itemContainer = GetNode<HBoxContainer>("ShopItems");
+        VBoxContainer itemContainer = GetNode<VBoxContainer>("%ShopItems");
         for (int i = 0; i < 4; i++)
         {
+            GD.Print("Setting shop item");
             ShopItem a = itemContainer.GetChild<ShopItem>(i);
             bool itemType = RollItemType();
             if (itemType == false)
             {
-                a.SetUpShopItem();
+                Dictionary<String, int> statUpgrade = new Dictionary<String, int>
+                { { GetRandomStat(), GD.RandRange(0, 10) } }; 
+                a.SetUpShopItem(statUpgrade);
             }
             else
                 a.SetUpShopAbility();
 
             
         }
+    }
+
+
+    private string GetRandomStat()
+    {
+        int random = GD.RandRange(0, 5);
+        string statName = Global.statNames[random];
+        return statName;
     }
 
     private bool RollItemType()

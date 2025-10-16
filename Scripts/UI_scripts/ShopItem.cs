@@ -1,9 +1,16 @@
 using Godot;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class ShopItem : Control
 {
+
+
+    [Export]
+    public Label priceLable, NameLable;
+    [Export]
+    public TextureRect ItemTexture;
+
 
     private bool isHovering = false;
 
@@ -18,13 +25,16 @@ public partial class ShopItem : Control
         {
             if (Input.IsActionJustPressed("LeftMouse"))
             {
-                
+                GD.Print("Test");
             }
         }
     }
 
-    public void SetUpShopItem()
+    public void SetUpShopItem(Dictionary<string, int> statUpgrade)
     {
+        string statName = statUpgrade.First().Key;
+        priceLable.Text = statUpgrade[statName].ToString();
+        NameLable.Text = statName;
         
     }
 
@@ -36,14 +46,12 @@ public partial class ShopItem : Control
     public void OnMouseEntered()
     {
         isHovering = true;
-        GD.Print("Testing enter");
         SetProcess(true);
     }
 
     public void OnMouseExited()
     {
         isHovering = false;
-        GD.Print("Testing exit");
         SetProcess(false);
     }
 

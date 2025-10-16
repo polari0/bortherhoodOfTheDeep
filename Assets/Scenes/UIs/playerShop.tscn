@@ -103,6 +103,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_behavior_recursive = 2
+mouse_default_cursor_shape = 2
 text = "Next Wave"
 
 [node name="PlayerStats" type="Panel" parent="HBoxContainer/VBoxContainer2"]
